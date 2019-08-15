@@ -65,7 +65,7 @@ describe('Categories Model', () => {
   // TODO: add another expect so it checks that the second obj is not in there?
   it('can delete() a category', () => {
     let obj = { name: 'Test Category' };
-    let obj2 = { name: 'Test Category 2'};
+    let obj2 = { name: 'Test Category 2' };
     return categories.create(obj)
       .then(record => {
         return categories.create(obj2)
@@ -74,6 +74,7 @@ describe('Categories Model', () => {
               .then(() => {
                 Object.keys(obj).forEach(key => {
                   expect(categories.database[0][key]).toEqual(obj[key]);
+                  expect(categories.database.length).toEqual(1);
                 });
               })
           });
