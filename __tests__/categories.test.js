@@ -44,4 +44,24 @@ describe('Categories Model', () => {
       });
   });
 
+  // TODO: refactor? Put two objects into an array and do forEach to create?
+  // TODO: make this look more like mongo?
+  // TODO: add another expect so it checks that the second obj is not in there?
+  it('can delete() a category', () => {
+    let obj = { name: 'Test Category' };
+    let obj2 = { name: 'Test Category 2'};
+    return categories.create(obj)
+      .then(record => {
+        return categories.create(obj2)
+          .then(record => {
+            return categories.delete(record.id)
+              .then(() => {
+                Object.keys(obj).forEach(key => {
+                  expect(categories.database[0][key]).toEqual(obj[key]);
+                });
+              })
+          });
+      })
+      .catch(error => console.error('DELETE ERROR', error));
+  });
 });
