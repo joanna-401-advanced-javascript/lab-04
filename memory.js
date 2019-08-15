@@ -47,9 +47,12 @@ class Model {
         } else {
           valid = false;
         }
-      }
-      else {
+      } else {
         record[field] = entry[field];
+      }
+
+      if(typeof entry[field] !== this.schema[field].type){
+        valid = false;
       }
     });
 
