@@ -1,6 +1,6 @@
 'use strict';
 
-const DataModel = require('../memory.js');
+const DataModel = require('../memory');
 
 class Categories extends DataModel {
   constructor() {
